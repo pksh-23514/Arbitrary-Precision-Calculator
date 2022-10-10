@@ -44,6 +44,12 @@ int str_to_LL (char*, int, Dlist**, Dlist**);
 int dl_insert_last (Dlist**, Dlist**, int);
 
 /* */
+int dl_insert_first (Dlist**, Dlist**, int);
+
+/* */
+int result_sign (char*, char*, char, char, char*, char*);
+
+/* */
 int compare (char*, char*);
 
 /* */

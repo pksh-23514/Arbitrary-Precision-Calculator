@@ -165,7 +165,73 @@ Operation is_operator (char ch)
 	return opt;
 }
 
-int compare (char* var1, char* var2)
+int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, char* operator)
+{
+	if (*operator == ADD)	//Result sign for Addition Operation.
+	{
+		if ((sign1 == '+') && (sign2 == '+'))	//If both the Variables are positive, the result is positive.
+		{
+			*signR = '+';
+		}
+		else if (((sign1 == '+') && (sign2 == '-')) || ((sign1 == '-') && (sign2 == '+')))	//If either of the Variable is negative, the result depends on the Larger number.
+		{
+			*operator = SUB;	//The Operation will also get changed to Subtraction.
+			int res = compare (var1, var2);
+			if (res >= 0)
+				*signR = sign1;
+			else
+				*signR = sign2;
+		}
+		else if ((sign1 == '-') && (sign2 == '-'))	//If both the Variables are negative, the result is negative.
+		{
+			*signR = '-';
+		}
+	}
+	else if (*operator == SUB)		//Result sign for Subtraction Operation.
+	{
+		if ((sign1 == '+') && (sign2 == '-'))	//If the First Variable is positive and Second Variable is negative, the result is positive.
+		{
+			*operator = ADD;	//The Operation will also get changed to Addition.
+			*signR = '+';
+		}
+		else if ((sign1 == '-') && (sign2 == '-'))	//If both the Variables negative, the result depends on the Larger number.
+		{
+			int res = compare (var1, var2);
+			if (res >= 0)
+				*signR = '-';
+			else
+				*signR = '+';
+		}
+		else if ((sign1 == '+') && (sign2 == '+'))  //If both the Variables positive, the result depends on the Larger number.
+		{
+			int res = compare (var1, var2);
+			if (res >= 0)
+				*signR = '+';
+			else
+				*signR = '-';
+		}
+		else if ((sign1 == '-') && (sign2 == '+'))   //If the First Variable is negative and Second Variable is positive, the result is negative.
+		{
+			*operator = ADD;
+			*signR = '-';
+		}
+	}
+	else if ((*operator == MUL) || (*operator == DIV))		//Result sign for Multiplication and Division Operation.
+	{
+		if (((sign1 == '+') && (sign2 == '+')) || ((sign1 == '-') && (sign2 == '-')))
+		{
+			*signR = '+';
+		}
+		else if (((sign1 == '+') && (sign2 == '-')) || ((sign1 == '-') && (sign2 == '+')))
+		{
+			*signR = '-';
+		}
+	}
+
+	return SUCCESS;
+}
+
+int compare (char* var1, char* var2)	//To compare the 2 given numbers. The greater number will decide the 'sign' of the Result in case of Addition and Subtraction Operation.
 {
 	int i = 0;
 	while ((var1 [i] != '\0') && (var1 [i] == var2 [i]))

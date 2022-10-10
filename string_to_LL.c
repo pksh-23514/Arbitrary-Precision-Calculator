@@ -31,7 +31,7 @@ int str_to_LL (char* var, int len, Dlist** head, Dlist** tail)
 	while (pos >= 0)
 	{
 		data = atoi (temp + pos);
-		ret = dl_insert_last (head, tail, data);
+		ret = dl_insert_first (head, tail, data);
 		if (ret == FAILURE)
 		{
 			printf ("ERROR: Node not created.\n");
@@ -44,7 +44,7 @@ int str_to_LL (char* var, int len, Dlist** head, Dlist** tail)
 	if (temp [0] != '\0')
 	{
 		data = atoi (temp);
-		ret = dl_insert_last (head, tail, data);
+		ret = dl_insert_first (head, tail, data);
 		if (ret == FAILURE)
 		{
 			printf ("ERROR: Node not created.\n");

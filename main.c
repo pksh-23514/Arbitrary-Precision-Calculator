@@ -32,28 +32,33 @@ int main()
 		if (head1 == NULL)
 		{
 			printf ("INFO: Variable 1 is 0.\n");
-			print_list (tail2);
+			print_list (head2);
 		}
 		else if (head2 == NULL)
 		{
 			printf ("INFO: Variable 2 is 0.\n");
-			print_list (tail1);
+			print_list (head1);
 		}
 		else
 		{
-			print_list (tail1);
-			print_list (tail2);
+			print_list (head1);
+			print_list (head2);
 		}
 
+		/* To obtain the value of 'signR' and change the Operation if required. */
+		ret = result_sign (var1, var2, num1.sign, num2.sign, &signR, &operator);
+		printf ("Result sign: %c\n", signR);
+		printf ("Operation: %d\n", operator);
+		
 		switch (operator)
 		{
 			case ADD:	/* Call the function to perform the Addition operation */
 				{
-					//ret = addition (&head1, &tail1, &head2, &tail2, &headR, &tailR, var1, var2, num1.sign, num2.sign, signR);
+					//ret = addition (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 					//if (ret == SUCCESS)
-					//{
+					{
 						//printf ("INFO: Addition of the Variables is done Successfully.\n");
-					//}
+					}
 				}
 				break;
 			case SUB:	/* Call the function to perform the Subtraction operation */
