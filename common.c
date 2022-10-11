@@ -177,10 +177,13 @@ int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, ch
 		{
 			*operator = SUB;	//The Operation will also get changed to Subtraction.
 			int res = compare (var1, var2);
+			//printf ("Compare: %d\n", res);
+			//printf ("Op1: %c and Op2: %c\n", sign1, sign2);
 			if (res >= 0)
 				*signR = sign1;
 			else
 				*signR = sign2;
+			//printf ("Sign: %c\n", *signR);
 		}
 		else if ((sign1 == '-') && (sign2 == '-'))	//If both the Variables are negative, the result is negative.
 		{
@@ -234,13 +237,21 @@ int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, ch
 int compare (char* var1, char* var2)	//To compare the 2 given numbers. The greater number will decide the 'sign' of the Result in case of Addition and Subtraction Operation.
 {
 	int i = 0;
-	while ((var1 [i] != '\0') && (var1 [i] == var2 [i]))
-		i++;
 
-	if (var1 [i] > var2 [i])
+	if ((strlen (var1)) > (strlen (var2)))
 		return 1;
-	else if (var1 [i] == var2 [i])
-		return 0;
-	else
+	else if ((strlen (var1)) < (strlen (var2)))
 		return -1;
+	else
+	{
+		while ((var1 [i] != '\0') && (var1 [i] == var2 [i]))
+			i++;
+
+		if (var1 [i] > var2 [i])
+			return 1;
+		else if (var1 [i] == var2 [i])
+			return 0;
+		else
+			return -1;
+	}
 }

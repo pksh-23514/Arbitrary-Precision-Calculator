@@ -11,12 +11,14 @@
 #define SUCCESS 0
 #define FAILURE -1
 
-typedef struct
+struct Node
 {
-	struct node *prev;
+	struct Node *prev;
 	int data;
-	struct node *next;
-} Dlist;
+	struct Node *next;
+};
+
+typedef struct Node Dlist;
 typedef enum
 {
 	ADD, SUB, MUL, DIV, MOD, UNSUPPORTED
@@ -53,7 +55,10 @@ int result_sign (char*, char*, char, char, char*, char*);
 int compare (char*, char*);
 
 /* */
-int addition (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, char, char, char);
+int addition (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
+
+/* */
+int subtraction (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 
 /* */
 void print_list (Dlist*);
