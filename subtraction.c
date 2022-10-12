@@ -1,6 +1,6 @@
 #include "apc.h"
 
-int addition (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
+int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
 {
 	if ((*head1 == NULL) && (*head2 == NULL))
 	{
@@ -22,24 +22,27 @@ int addition (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist 
 	{
 		Dlist* temp1 = *tail1;
 		Dlist* temp2 = *tail2;
-		int carry = 0, res, ret;
+		int borrow = 0, res, ret;
 
 		while ((temp1 != NULL) || (temp2 != NULL))
 		{
-			res = ((temp1 == NULL) ? 0 : (temp1->data)) + ((temp2 == NULL) ? 0 : (temp2->data)) + carry;
+			int num1 = ((temp1 == NULL) ? 0 : (temp1->data));
+			int num2 = ((temp2 == NULL) ? 0 : (temp2->data));
 			
-			//printf ("Result: %d\n", res);
-			if (res >= 10000)
+			if (num1 < num2)
 			{
-				carry = 1;
-				res = res - 10000;
+				printf ("temp1->data: %d & temp2->data: %d\n", num1, num2);
+				borrow = 10000;
+				temp1->prev->data = temp1->prev->data - 1;
+				printf ("Prev Node Data: %d\n", temp1->prev->data);
 			}
 			else
 			{
-				carry = 0;
+				borrow = 0;
 			}
 
-			//printf ("Result: %d & Carry: %d\n", res, carry);
+			res = num1 - num2 + borrow;
+			printf ("Result: %d\n", res);
 			ret = dl_insert_first (headR, tailR, res);
 			if (ret == FAILURE)
 			{
@@ -51,16 +54,6 @@ int addition (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist 
 				temp1 = temp1->prev;
 			if (temp2 != NULL)
 				temp2 = temp2->prev;
-		}
-
-		if (carry == 1)
-		{
-			ret = dl_insert_first (headR, tailR, carry);
-			if (ret == FAILURE)
-			{
-				printf ("ERROR: Node not created.\n");
-				return FAILURE;
-			}
 		}
 	}
 }
