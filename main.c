@@ -5,7 +5,7 @@ int main()
 	Dlist *head1, *tail1, *head2, *tail2, *headR, *tailR;
 	char option, operator;
 	Num num1, num2;
-	char var1 [MAX_BUF], var2 [MAX_BUF];
+	char var1 [MAX_BUF], var2 [MAX_BUF], res [MAX_BUF];
 	char signR;
 
 	do
@@ -105,7 +105,9 @@ int main()
 		}
 
 		printf ("Result: ");
-		print_list (headR);
+		//print_list (headR);
+		ret = LL_to_str (headR, tailR, signR, res);
+		printf ("%s\n", res);
 
 		printf ("Want to continue? Press [y/Y | n/N]: ");
 		scanf ("\n%c", &option);

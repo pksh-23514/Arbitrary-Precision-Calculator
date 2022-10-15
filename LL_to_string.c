@@ -2,7 +2,7 @@
 
 int LL_to_str (Dlist* head, Dlist* tail, char sign, char* data)
 {
-	int pos = 0;
+	int pos = 0, ret;
 	data [pos++] = sign;
 	char buffer [5];
 	if (head == NULL)
@@ -13,7 +13,10 @@ int LL_to_str (Dlist* head, Dlist* tail, char sign, char* data)
 	{
 		while (head != NULL)
 		{
-			ret = sprintf (buffer, "%d", head->data);
+			if (head->data != 0)
+				ret = sprintf (buffer, "%d", head->data);
+			else
+				ret = sprintf (buffer, "%04d", 0);
 
 			for (int i = 0; i < ret; i++)
 			{
@@ -26,5 +29,5 @@ int LL_to_str (Dlist* head, Dlist* tail, char sign, char* data)
 
 	data [pos] = '\0';
 
-	return 1;
+	return SUCCESS;
 }
