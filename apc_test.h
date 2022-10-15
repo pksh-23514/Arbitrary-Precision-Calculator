@@ -16,9 +16,9 @@ struct test
 	char operand2 [MAX_BUF];
 	char sign2;
 	char result [MAX_BUF];
-	char sign_res;
 };
 
 typedef struct test Sample;
 
 /* Function Declarations */
+#endif

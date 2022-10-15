@@ -7,12 +7,15 @@ Sample subraction_tests[NUM_TESTCASES];
 void create_test ()
 {
 	/* Addition Test Cases */
-	addition_cases[0] = {"123456", '+', '+', "987654", '+', "1111110", '+'};
-	addition_cases[1] = {"123", '-', '+', "25", '+', "98", '-'};
+	{
+		Sample data [50] = {{"123456", '+', '+', "987654", '+', "+1111110"}, {"123", '-', '+', "25", '+', "-98"}};
+	}
 
 	/*Subtraction Test Cases */
-	subtraction_cases[2] = {"1000000", '-', "1", "999999"};
-}
+	{
+		Sample data [50] = {{"1000000", '+', '-', "1", '+', "+999999"}};
+	}
+} 
 
 
 void RunAllTests() {

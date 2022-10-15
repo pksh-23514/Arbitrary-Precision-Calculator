@@ -31,10 +31,10 @@ int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dli
 			
 			if (num1 < num2)
 			{
-				printf ("temp1->data: %d & temp2->data: %d\n", num1, num2);
+				//printf ("temp1->data: %d & temp2->data: %d\n", num1, num2);
 				borrow = 10000;
 				temp1->prev->data = temp1->prev->data - 1;
-				printf ("Prev Node Data: %d\n", temp1->prev->data);
+				//printf ("Prev Node Data: %d\n", temp1->prev->data);
 			}
 			else
 			{
@@ -42,7 +42,7 @@ int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dli
 			}
 
 			res = num1 - num2 + borrow;
-			printf ("Result: %d\n", res);
+			//printf ("Result: %d\n", res);
 			ret = dl_insert_first (headR, tailR, res);
 			if (ret == FAILURE)
 			{

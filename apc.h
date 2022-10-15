@@ -63,7 +63,8 @@ int subtraction (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 /* */
 void print_list (Dlist*);
 
-
+/* */
+int LL_to_str (Dlist*, Dlist*, char, char*);
 
 
 #endif
