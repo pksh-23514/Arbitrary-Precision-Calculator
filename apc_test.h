@@ -20,5 +20,5 @@ typedef struct test Sample;
 
 void run_all_tests ();
 
-void run_tests (Sample [], Operation);
+int run_tests (Sample [], char);
 #endif

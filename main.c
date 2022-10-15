@@ -1,7 +1,10 @@
 #include "apc.h"
+#include "apc_test.h"
 
 int main()
 {
+
+#if 0	
 	Dlist *head1, *tail1, *head2, *tail2, *headR, *tailR;
 	char option, operator;
 	Num num1, num2;
@@ -124,6 +127,9 @@ int main()
 		getchar ();		//To remove the '\n' generated after scanf() in the Input Buffer.
 		printf ("---------------------------------------------------------------\n");
 	} while (option == 'y' || option == 'Y');
+#endif
+
+	run_all_tests ();
 
 	return 0;
 }

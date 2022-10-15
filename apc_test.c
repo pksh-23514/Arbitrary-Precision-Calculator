@@ -9,23 +9,23 @@ void run_all_tests ()
 	{
 		Sample test_cases [NUM_TESTCASES] = {{"123456", '+', '+', "987654", '+', "+1111110"}, {"123", '-', '+', "25", '+', "-98"}};
 
-		totalPassedCases += runTests (test_cases, ADD);
+		totalPassedCases += run_tests (test_cases, ADD);
 	}
 
 	/*Subtraction Test Cases */
 	{
 		Sample test_cases [NUM_TESTCASES] = {{"10000", '+', '-', "1", '+', "+9999"}, {"987654", '-', '-', "123456", '+', "-1111110"}};
 
-		totalPassedCases += runTests (subtraction_cases, SUB);
+		totalPassedCases += run_tests (test_cases, SUB);
 	}
 
-	printf("\npassed %d out of %d cases\n", totalPassedCases, (NUM_TESTCASES * 2));
+	printf("Passed %d Out of %d Cases.\n", totalPassedCases, (NUM_TESTCASES * 2));
 }
 
 // runs tests for given sample test cases and operation.
 // operation - aka function under test (fut)
 
-void run_tests (Sample inputArray [], Operation fut)
+int run_tests (Sample inputArray [], char fut)
 {
 	int casesPassed = 0, ret;
 	char operator = fut, signR, res [MAX_BUF];
@@ -49,10 +49,19 @@ void run_tests (Sample inputArray [], Operation fut)
 					  break;
 		}
 
-		ret = LL_to_str (headR, tailR, signR, res);
+		ret = LL_to_str (headR, tailR, signR, res) + 1;
 
-		if ((strncmp (inputArray [i].result, res, ret) == 0)
+		if ((strncmp (inputArray [i].result, res, ret) == 0))
 				casesPassed += 1;
+		else
+		{
+			printf ("Operand1: %s Sign1: %c\t", inputArray [i].operand1, inputArray [i].sign1);
+			printf ("Operation: %c\n", inputArray [i].operation);
+			printf ("Operand2: %s Sign2: %c\n", inputArray [i].operand2, inputArray [i].sign2);
+			printf ("Expected Result: %s\n", inputArray [i].result);
+			printf ("Calculated Result: %s\n", res);
+		}
+
 	}
 
 	return casesPassed;
