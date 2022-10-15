@@ -1,11 +1,7 @@
 #ifndef APC_TEST_H
 #define APC_TEST_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
+#define NUM_TESTCASES 2
 #define MAX_BUF 500
 
 struct test
@@ -21,4 +17,8 @@ struct test
 typedef struct test Sample;
 
 /* Function Declarations */
+
+void run_all_tests ();
+
+void run_tests (Sample [], Operation);
 #endif
