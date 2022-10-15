@@ -15,7 +15,7 @@ int main()
 		headR = tailR = NULL;
 
 		int ret = read_and_validate_args (&num1, &num2, var1, var2, &operator);
-		//printf ("Return: %d\n", ret);
+		printf ("Return: %d\n", ret);
 		if (ret == SUCCESS)
 		{
 			printf ("INFO: Reading of the Variables is done Successfully.\n");
@@ -34,8 +34,8 @@ int main()
 				}
 				else if (head2 == NULL)
 				{
-					printf ("INFO: Variable 2 is 0.\n");
 					print_list (head1);
+					printf ("INFO: Variable 2 is 0.\n");
 				}
 				else
 				{
@@ -101,16 +101,25 @@ int main()
 						break;
 					default: printf ("Invalid Input: Try again...\n");
 				}
+
+				printf ("Result: ");
+				print_list (headR);
+				ret = LL_to_str (headR, tailR, signR, res);
+				printf ("Result: %s\n", res);
+				printf ("Size: %d\n", ret);
+			}
+			else
+			{
+				if ((head1 == NULL) && (head2 == NULL))
+				{
+					printf ("INFO: Variable 1 is 0.\n");
+					printf ("INFO: Variable 2 is 0.\n");
+				}
 			}
 		}
 
-		printf ("Result: ");
-		//print_list (headR);
-		ret = LL_to_str (headR, tailR, signR, res);
-		printf ("%s\n", res);
-
 		printf ("Want to continue? Press [y/Y | n/N]: ");
-		scanf ("\n%c", &option);
+		scanf ("%c", &option);
 
 		getchar ();		//To remove the '\n' generated after scanf() in the Input Buffer.
 		printf ("---------------------------------------------------------------\n");

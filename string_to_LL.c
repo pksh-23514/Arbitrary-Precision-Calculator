@@ -3,18 +3,30 @@
 int convert (char* var1, char* var2, int len1, int len2, Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2)
 {
 	int ret;
+	if ((len1 == 0) && (len2 == 0))
+	{
+		return FAILURE;
+	}
 	if ((len1 == 0) && (len2 != 0))
 	{
 		ret = str_to_LL (var2, len2, head2, tail2);
+		if (ret == FAILURE)
+			return FAILURE;
 	}
 	else if ((len1 != 0) && (len2 == 0))
 	{
 		ret = str_to_LL (var1, len1, head1, tail1);
+		if (ret == FAILURE)
+			return FAILURE;
 	}
 	else
 	{
 		ret = str_to_LL (var1, len1, head1, tail1);
+		if (ret == FAILURE)
+			return FAILURE;
 		ret = str_to_LL (var2, len2, head2, tail2);
+		if (ret == FAILURE)
+			return FAILURE;
 	}
 
 	return SUCCESS;
