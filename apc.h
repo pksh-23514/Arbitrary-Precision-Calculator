@@ -61,10 +61,20 @@ int addition (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 int subtraction (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 
 /* */
+int multiplication (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
+
+/* */
+int count_nodes (Dlist*);
+
+/* */
+int create_result (Dlist**, Dlist**, int);
+
+/* */
 void print_list (Dlist*);
 
 /* */
 int LL_to_str (Dlist*, Dlist*, char, char*);
 
+int dl_delete_list(Dlist **head, Dlist **tail);
 
 #endif
