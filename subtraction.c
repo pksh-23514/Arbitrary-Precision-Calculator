@@ -2,11 +2,7 @@
 
 int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
 {
-	if ((*head1 == NULL) && (*head2 == NULL))
-	{
-		return FAILURE;
-	}
-	else if ((*head1 == NULL) && (*head2 != NULL))
+	if ((*head1 == NULL) && (*head2 != NULL))
 	{
 		*headR = *head2;
 		*tailR = *tail2;
@@ -55,5 +51,7 @@ int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dli
 			if (temp2 != NULL)
 				temp2 = temp2->prev;
 		}
+
+		return SUCCESS;
 	}
 }

@@ -7,19 +7,22 @@ void run_all_tests ()
 
 	/* Addition Test Cases */
 	{
-		Sample test_cases [NUM_TESTCASES] = {{"123456", '+', '+', "987654", '+', "+1111110"}, {"123", '-', '+', "25", '+', "-98"}};
+		Sample test_cases [NUM_TESTCASES] = {{"123456", '+', '+', "987654", '+', "+1111110"}, {"123", '+', '+', "25", '+', "+148"}, {"9999", '+', '+', "1", '+', "+10000"}, 
+{"0", '+', '+', "0", '-', "0"}, {"9999999999999999", '-', '+', "123456789", '+', "-9999999876543210"}, {"123", '-', '+', "25", '+', "-98"}, {"234679", '-', '+', "4659129", '-', "-4893808"}, 
+{"9999", '-', '+', "", '+', "-9999"}, {"689318874", '+', '+', "897545768", '-', "-208226894"}, {"", '+', '+', "", '+', "0"}, {"", '+', '+', "", '-', "0"}, {"", '-', '+', "", '+', "0"}, 
+{"", '-', '+', "", '-', "0"}, {"", '+', '+', "9999", '+', "+9999"}, {"9999", '-', '+', "9999", '+', "0"}};
 
 		totalPassedCases += run_tests (test_cases, ADD);
 	}
 
 	/*Subtraction Test Cases */
 	{
-		Sample test_cases [NUM_TESTCASES] = {{"10000", '+', '-', "1", '+', "+9999"}, {"987654", '-', '-', "123456", '+', "-1111110"}};
+		//Sample test_cases [NUM_TESTCASES] = {{"10000", '+', '-', "1", '+', "+9999"}, {"987654", '-', '-', "123456", '+', "-1111110"}};
 
-		totalPassedCases += run_tests (test_cases, SUB);
+		//totalPassedCases += run_tests (test_cases, SUB);
 	}
 
-	printf("Passed %d Out of %d Cases.\n", totalPassedCases, (NUM_TESTCASES * 2));
+	printf("Passed %d Out of %d Cases.\n", totalPassedCases, (NUM_TESTCASES));
 }
 
 // runs tests for given sample test cases and operation.
@@ -45,7 +48,7 @@ int run_tests (Sample inputArray [], char fut)
 		{
 			case ADD: addition (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 					  break;
-			case SUB: subtraction (&head1, &tail1, &head2, &tail2, &headR, &tailR);
+			case SUB: //subtraction (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 					  break;
 		}
 
@@ -59,7 +62,7 @@ int run_tests (Sample inputArray [], char fut)
 			printf ("Operation: %c\n", inputArray [i].operation);
 			printf ("Operand2: %s Sign2: %c\n", inputArray [i].operand2, inputArray [i].sign2);
 			printf ("Expected Result: %s\n", inputArray [i].result);
-			printf ("Calculated Result: %s\n", res);
+			printf ("Calculated Result: %s\n\n", res);
 		}
 
 	}

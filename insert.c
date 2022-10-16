@@ -29,7 +29,6 @@ int dl_insert_first (Dlist **head, Dlist **tail, int data)
 
 /* dl_insert_last : Insert a New node as the Last node of the DLL */
 
-#if 0
 int dl_insert_last (Dlist **head, Dlist **tail, int data)
 {
 	Dlist* new = (Dlist*) malloc (sizeof (Dlist));	//Dynamic memory allocation to create the Node.
@@ -54,4 +53,3 @@ int dl_insert_last (Dlist **head, Dlist **tail, int data)
 		return SUCCESS;
 	}
 }
-#endif

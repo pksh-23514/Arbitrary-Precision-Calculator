@@ -3,13 +3,13 @@
 
 int main()
 {
-
-#if 0	
+#if 0
 	Dlist *head1, *tail1, *head2, *tail2, *headR, *tailR;
 	char option, operator;
 	Num num1, num2;
 	char var1 [MAX_BUF], var2 [MAX_BUF], res [MAX_BUF];
 	char signR;
+	int ret;
 
 	do
 	{
@@ -17,8 +17,8 @@ int main()
 		head2 = tail2 = NULL;
 		headR = tailR = NULL;
 
-		int ret = read_and_validate_args (&num1, &num2, var1, var2, &operator);
-		printf ("Return: %d\n", ret);
+		ret = read_and_validate_args (&num1, &num2, var1, var2, &operator);
+		//printf ("Return: %d\n", ret);
 		if (ret == SUCCESS)
 		{
 			printf ("INFO: Reading of the Variables is done Successfully.\n");
@@ -62,7 +62,7 @@ int main()
 							}
 							else
 							{
-								printf ("INFO: Result is 0.\n");
+								printf ("ERROR: Addition Operation Failed.\n");
 							}
 						}
 						break;
@@ -84,15 +84,21 @@ int main()
 							}
 							else
 							{
-								printf ("INFO: Result is 0.\n");
+								printf ("ERROR: Subtraction Operation Failed.\n");
 							}
 						}
 						break;
 					case MUL:	/* Call the function to perform the Multiplication operation */
 						{
-							//
-							//
-							//
+							ret = multiplication (&head1, &tail1, &head2, &tail2, &headR, &tailR);
+							if (ret == SUCCESS)
+							{
+								printf ("INFO: Multiplication of the Variables is done Successfully.\n");
+							}
+							else
+							{
+								printf ("ERROR: Multiplication Operation Failed.\n");
+							}
 						}
 						break;
 					case DIV:	/* Call the function to perform the Division operation */
@@ -107,6 +113,7 @@ int main()
 
 				printf ("Result: ");
 				print_list (headR);
+				memset (res, '\0', 500);
 				ret = LL_to_str (headR, tailR, signR, res);
 				printf ("Result: %s\n", res);
 				printf ("Size: %d\n", ret);
@@ -117,19 +124,28 @@ int main()
 				{
 					printf ("INFO: Variable 1 is 0.\n");
 					printf ("INFO: Variable 2 is 0.\n");
+
+					if ((operator == ADD) || (operator == SUB) || (operator == MUL))
+					{
+						printf ("INFO: Result is 0.\n");
+					}
+					else if (operator == DIV)
+					{
+						printf ("INFO: Result is Undetermined.\n");
+					}
 				}
 			}
 		}
-
+		
+		__fpurge (stdin);
 		printf ("Want to continue? Press [y/Y | n/N]: ");
-		scanf ("%c", &option);
-
+		option = getchar ();
+			
 		getchar ();		//To remove the '\n' generated after scanf() in the Input Buffer.
-		printf ("---------------------------------------------------------------\n");
+		printf ("---------------------------------------------------------------\n");		
 	} while (option == 'y' || option == 'Y');
 #endif
 
 	run_all_tests ();
-
 	return 0;
 }
