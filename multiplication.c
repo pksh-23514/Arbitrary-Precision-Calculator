@@ -2,14 +2,15 @@
 
 int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
 {
-	if ((*head1 == NULL) && (*head2 != NULL))	//If one of the Operand is Zero, Result shall be Zero.
+	if (((*head1 == NULL) && (*head2 != NULL)) || ((*head2 == NULL) && (*head1 != NULL)))	//If one of the Operand is Zero, Result shall be Zero.
 	{
-		//Create one Node with Data as '0' and return.
-		return SUCCESS;
-	}
-	else if ((*head2 == NULL) && (*head1 != NULL))	//If one of the Operand is Zero, Result shall be Zero.
-	{
-		//Create one Node with Data as '0' and return.
+		int ret = create_result (headR, tailR, 1);
+		if (ret == FAILURE)
+		{
+			printf ("ERROR: Node not created.\n");
+			return FAILURE;
+		}
+		
 		return SUCCESS;
 	}
 	else
@@ -75,6 +76,11 @@ int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, 
 			for (int i = 0; i < count; i++)
 			{
 				ret = dl_insert_last (&tempR_h, &tempR_t, 0);
+				if (ret == FAILURE)		//Error Handling.
+				{
+					printf ("ERROR: Node not created.\n");
+					return FAILURE;
+				}
 			}
 			printf ("Result of Inner loop: ");
 			print_list (tempR_h);
@@ -84,28 +90,22 @@ int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, 
 			{
 				printf ("Result after Addition: ");
 				print_list (*headR);
-/*
-				if (temp2->prev != NULL)
+				
+				ret = dl_delete_list (&tempR_h, &tempR_t);
+				if (ret == FAILURE)
 				{
-					ret = dl_insert_last (headR, tailR, 0);
-					if (ret == FAILURE)
-					{
-						printf ("ERROR: Node not created.\n");
-						return FAILURE;
-					}
+					printf ("ERROR: List cannot be Deleted.\n");
 				}
-*/
-				printf ("Value for next Iteration: ");
-				print_list (*headR);
-				dl_delete_list (&tempR_h, &tempR_t);
-				//free (sumR_h);
-				//free (sumR_t);
-
+				ret = dl_delete_list (&sumR_h, &sumR_t);
+				if (ret == FAILURE)
+				{
+					printf ("ERROR: List cannot be Deleted.\n");
+				}
+				
 				sumR_h = *headR;
 				sumR_t = *tailR;
 				temp2 = temp2->prev;
-				count++;
-				//exit (0);
+				count += 1;
 			}
 			else
 				return FAILURE;

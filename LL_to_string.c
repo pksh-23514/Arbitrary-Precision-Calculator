@@ -37,6 +37,12 @@ int LL_to_str (Dlist* head, Dlist* tail, char sign, char* data)
 		}
 	}
 
+	printf ("%s %d\n", data, strlen (data));
+	if ((strcmp (data, "+") == 0) || (strcmp (data, "-") == 0))
+	{
+		memset (data, '0', 1);
+	}
+	
 	data [pos] = '\0';
 
 	return (pos - 1);	//Returns the Size of the Result without the Sign.

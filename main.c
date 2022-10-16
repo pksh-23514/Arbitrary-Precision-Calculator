@@ -112,6 +112,7 @@ int main()
 
 				printf ("Result: ");
 				print_list (headR);
+				memset (res, '\0', 500);
 				ret = LL_to_str (headR, tailR, signR, res);
 				printf ("Result: %s\n", res);
 				printf ("Size: %d\n", ret);
@@ -122,6 +123,15 @@ int main()
 				{
 					printf ("INFO: Variable 1 is 0.\n");
 					printf ("INFO: Variable 2 is 0.\n");
+
+					if ((operator == ADD) || (operator == SUB) || (operator == MUL))
+					{
+						printf ("INFO: Result is 0.\n");
+					}
+					else if (operator == DIV)
+					{
+						printf ("INFO: Result is Undetermined.\n");
+					}
 				}
 			}
 		}
