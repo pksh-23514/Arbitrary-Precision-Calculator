@@ -1,7 +1,7 @@
 #ifndef APC_TEST_H
 #define APC_TEST_H
 
-#define NUM_TESTCASES 15
+#define NUM_TESTCASES 11
 #define MAX_BUF 500
 
 struct test

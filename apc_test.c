@@ -9,8 +9,7 @@ void run_all_tests ()
 	{
 		Sample test_cases [NUM_TESTCASES] = {{"123456", '+', '+', "987654", '+', "+1111110"}, {"123", '+', '+', "25", '+', "+148"}, {"9999", '+', '+', "1", '+', "+10000"}, 
 {"0", '+', '+', "0", '-', "0"}, {"9999999999999999", '-', '+', "123456789", '+', "-9999999876543210"}, {"123", '-', '+', "25", '+', "-98"}, {"234679", '-', '+', "4659129", '-', "-4893808"}, 
-{"9999", '-', '+', "", '+', "-9999"}, {"689318874", '+', '+', "897545768", '-', "-208226894"}, {"", '+', '+', "", '+', "0"}, {"", '+', '+', "", '-', "0"}, {"", '-', '+', "", '+', "0"}, 
-{"", '-', '+', "", '-', "0"}, {"", '+', '+', "9999", '+', "+9999"}, {"9999", '-', '+', "9999", '+', "0"}};
+{"9999", '-', '+', "", '+', "-9999"}, {"689318874", '+', '+', "897545768", '-', "-208226894"}, {"", '+', '+', "9999", '+', "+9999"}, {"9999", '-', '+', "9999", '+', "0"}};
 
 		totalPassedCases += run_tests (test_cases, ADD);
 	}
@@ -34,20 +33,20 @@ int run_tests (Sample inputArray [], char fut)
 	char operator, signR, res [MAX_BUF];
 	Dlist *head1, *tail1, *head2, *tail2, *headR, *tailR;
 
-	printf ("Operator before: %d\n", operator);
+	//printf ("Operator before: %d\n", operator);
 	for (int i = 0; i < NUM_TESTCASES; i++)
 	{
 		operator = fut;
-		printf ("Iteration: %d\n", i);
+		//printf ("Iteration: %d\n", i);
 		head1 = tail1 = NULL;
 		head2 = tail2 = NULL;
 		headR = tailR = NULL;
 
 		convert (inputArray [i].operand1, inputArray [i].operand2, strlen (inputArray [i].operand1), strlen (inputArray [i].operand2), &head1, &tail1, &head2, &tail2);
 
-		printf ("Inside Result fn():\n");
+		//printf ("Inside Result fn():\n");
 		result_sign (inputArray [i].operand1, inputArray [i].operand2, inputArray [i].sign1, inputArray [i].sign2, &signR, &operator);
-		printf ("Operator after: %d\n", operator);
+		//printf ("Operator after: %d\n", operator);
 		
 		switch (operator)
 		{
