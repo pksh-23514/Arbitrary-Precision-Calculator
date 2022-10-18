@@ -37,7 +37,7 @@ int LL_to_str (Dlist* head, Dlist* tail, char sign, char* data)
 		}
 	}
 
-	//printf ("%s %d\n", data, strlen (data));
+	//printf ("%s %lu\n", data, strlen (data));
 	if ((strcmp (data, "+") == 0) || (strcmp (data, "-") == 0))
 	{
 		memset (data, '0', 1);

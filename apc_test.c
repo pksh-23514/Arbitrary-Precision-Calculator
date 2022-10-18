@@ -31,27 +31,37 @@ void run_all_tests ()
 int run_tests (Sample inputArray [], char fut)
 {
 	int casesPassed = 0, ret;
-	char operator = fut, signR, res [MAX_BUF];
+	char operator, signR, res [MAX_BUF];
 	Dlist *head1, *tail1, *head2, *tail2, *headR, *tailR;
 
+	printf ("Operator before: %d\n", operator);
 	for (int i = 0; i < NUM_TESTCASES; i++)
 	{
+		operator = fut;
+		printf ("Iteration: %d\n", i);
 		head1 = tail1 = NULL;
 		head2 = tail2 = NULL;
 		headR = tailR = NULL;
 
 		convert (inputArray [i].operand1, inputArray [i].operand2, strlen (inputArray [i].operand1), strlen (inputArray [i].operand2), &head1, &tail1, &head2, &tail2);
 
+		printf ("Inside Result fn():\n");
 		result_sign (inputArray [i].operand1, inputArray [i].operand2, inputArray [i].sign1, inputArray [i].sign2, &signR, &operator);
+		printf ("Operator after: %d\n", operator);
 		
 		switch (operator)
 		{
 			case ADD: addition (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 					  break;
-			case SUB: //subtraction (&head1, &tail1, &head2, &tail2, &headR, &tailR);
+			case SUB: ret = compare (inputArray [i].operand1, inputArray [i].operand2);
+					  if (ret >= 0)
+						  subtraction (&head1, &tail1, &head2, &tail2, &headR, &tailR);
+					  else
+						  subtraction (&head2, &tail2, &head1, &tail1, &headR, &tailR);
 					  break;
 		}
 
+		memset (res, '\0', 500);
 		ret = LL_to_str (headR, tailR, signR, res) + 1;
 
 		if ((strncmp (inputArray [i].result, res, ret) == 0))
@@ -59,7 +69,7 @@ int run_tests (Sample inputArray [], char fut)
 		else
 		{
 			printf ("Operand1: %s Sign1: %c\t", inputArray [i].operand1, inputArray [i].sign1);
-			printf ("Operation: %c\n", inputArray [i].operation);
+			printf ("Operation: %c\t", inputArray [i].operation);
 			printf ("Operand2: %s Sign2: %c\n", inputArray [i].operand2, inputArray [i].sign2);
 			printf ("Expected Result: %s\n", inputArray [i].result);
 			printf ("Calculated Result: %s\n\n", res);

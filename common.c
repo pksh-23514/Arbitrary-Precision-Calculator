@@ -167,11 +167,13 @@ Operation is_operator (char ch)
 
 int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, char* operator)
 {
+	//printf ("Operand1: %c %s\tOperand2: %c %s\t Operation: %d\n", sign1, var1, sign2, var2, *operator);
 	if (*operator == ADD)	//Result sign for Addition Operation.
 	{
 		if ((sign1 == '+') && (sign2 == '+'))	//If both the Variables are positive, the result is positive.
 		{
 			*signR = '+';
+			//printf ("+++\n");
 		}
 		else if (((sign1 == '+') && (sign2 == '-')) || ((sign1 == '-') && (sign2 == '+')))	//If either of the Variable is negative, the result depends on the Larger number.
 		{
@@ -188,6 +190,7 @@ int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, ch
 		else if ((sign1 == '-') && (sign2 == '-'))	//If both the Variables are negative, the result is negative.
 		{
 			*signR = '-';
+			//printf ("---");
 		}
 	}
 	else if (*operator == SUB)		//Result sign for Subtraction Operation.
