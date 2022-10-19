@@ -18,7 +18,7 @@ int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, 
 		int len1 = count_nodes (*head1);	//Count the number of Nodes in First Operand.
 		int len2 = count_nodes (*head2);	//Count the number of Nodes in Second Operand.
 		int len = (len1 > len2) ? (len1 + 1) : (len2 + 1);
-		printf ("Initial lenth: %d\n", len);
+		//printf ("Initial lenth: %d\n", len);
 		Dlist* temp2 = *tail2;
 		Dlist *tempR_h, *tempR_t, *sumR_h, *sumR_t;
 		int carry, res, ret, count = 0;
@@ -41,7 +41,7 @@ int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, 
 			while (temp1 != NULL)	//The loop shall run till all the Nodes of the First Operand have been multiplied with the single Node of the Second Operand.
 			{
 				res = (temp1->data * temp2->data) + carry;
-				printf ("Temp1: %d\tTemp2: %d\n", temp1->data, temp2->data);
+				//printf ("Temp1: %d\tTemp2: %d\n", temp1->data, temp2->data);
 
 				if (res >= 10000)	//To check if the product has more than 4 digits or not.
 				{
@@ -82,14 +82,14 @@ int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, 
 					return FAILURE;
 				}
 			}
-			printf ("Result of Inner loop: ");
-			print_list (tempR_h);
+			//printf ("Result of Inner loop: ");
+			//print_list (tempR_h);
 			
 			ret = addition (&tempR_h, &tempR_t, &sumR_h, &sumR_t, headR, tailR);	//Add the Dummy DLL and the Temporary DLL to form the Result DLL.
 			if (ret == SUCCESS)
 			{
-				printf ("Result after Addition: ");
-				print_list (*headR);
+				//printf ("Result after Addition: ");
+				//print_list (*headR);
 				
 				ret = dl_delete_list (&tempR_h, &tempR_t);
 				if (ret == FAILURE)

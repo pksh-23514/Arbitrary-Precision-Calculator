@@ -27,7 +27,18 @@ void run_all_tests ()
 		totalPassedCases += run_tests (test_cases, SUB);
 	}
 
-	printf("Passed %d Out of %d Cases.\n", totalPassedCases, (NUM_TESTCASES * 2));
+	/* Multiplication Test Cases */
+	{
+		Sample test_cases [NUM_TESTCASES] = {{"7", '+', '*', "10000001", '+', "+70000007"}, {"0", '-', '*', "0000000000000", '+', "0"}, {"11111111111", '+', '*', "11111", '+', "+123455555554321"}, 
+{"99999", '+', '*', "99999999999999", '+', "+9999899999999900001"}, {"123456789", '-', '*', "852147963", '-', "+105203451264870807"}, {"98745", '-', '*', "369852147", '+', "-36521050255515"}, 
+{"586172354997", '+', '*', "123456987753159852456", '-', "-72367073252105498442326574322632"}, {"", '+', '*', "123456", '-', "0"}, {"123456", '-', '*', "", '+', "0"}, 
+{"11111111111111111111", '+', '*', "999999999999999999999", '+', "+11111111111111111110988888888888888888889"}, {"010", '+', '*', "101", '-', "-1010"}, 
+{"123456789", '+', '*', "987456321", '+', "+121908186668413269"}, {"159753", '-', '*', "123698741", '-', "+19761244970973"}, {"77777777", '+', '*', "11111", '+', "+864188880247"}, 
+{"147852369", '+', '*', "987456321147852369", '-', "-145997756365734772018912161"}};
+
+		totalPassedCases += run_tests (test_cases, MUL);
+	}
+	printf("Passed %d Out of %d Cases.\n", totalPassedCases, (NUM_TESTCASES * 3));
 }
 
 /* Runs tests for the given Sample Test cases and a particular Operation.
@@ -63,6 +74,8 @@ int run_tests (Sample inputArray [], char fut)
 						  subtraction (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 					  else
 						  subtraction (&head2, &tail2, &head1, &tail1, &headR, &tailR);
+					  break;
+			case MUL: multiplication (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 					  break;
 		}
 
