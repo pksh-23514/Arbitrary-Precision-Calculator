@@ -2,6 +2,7 @@
 #define APC_H
 
 #include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -10,6 +11,9 @@
 #define MAX_BUF 500
 #define SUCCESS 0
 #define FAILURE -1
+#define GT 3
+#define EQ 2
+#define LT 1
 
 struct Node
 {
@@ -76,5 +80,9 @@ void print_list (Dlist*);
 int LL_to_str (Dlist*, Dlist*, char, char*);
 
 int dl_delete_list(Dlist **head, Dlist **tail);
+
+int division (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
+int compare_LL_lt (Dlist* head1, Dlist* head2);
+int remove_zeros (Dlist** head);
 
 #endif

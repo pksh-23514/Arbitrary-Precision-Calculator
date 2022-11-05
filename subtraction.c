@@ -2,6 +2,10 @@
 
 int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
 {
+	//printf ("Inside Subtraction:\n");
+	//print_list (*head1);
+	//print_list (*head2);
+	//print_list (*headR);
 	if ((*head1 == NULL) && (*head2 != NULL))
 	{
 		*headR = *head2;
@@ -24,6 +28,7 @@ int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dli
 		{
 			int num1 = ((temp1 == NULL) ? 0 : (temp1->data));
 			int num2 = ((temp2 == NULL) ? 0 : (temp2->data));
+			//printf ("temp1->data: %d & temp2->data: %d\n", num1, num2);
 			
 			if (num1 < num2)
 			{
@@ -51,6 +56,8 @@ int subtraction (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dli
 			if (temp2 != NULL)
 				temp2 = temp2->prev;
 		}
+
+		//print_list (*headR);
 
 		return SUCCESS;
 	}

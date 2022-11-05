@@ -3,7 +3,7 @@
 
 int main()
 {
-#if 0
+#if 1
 	Dlist *head1, *tail1, *head2, *tail2, *headR, *tailR;
 	char option, operator;
 	Num num1, num2;
@@ -103,7 +103,7 @@ int main()
 						break;
 					case DIV:	/* Call the function to perform the Division operation */
 						{
-							//
+							ret = division (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 							//
 							//
 						}
@@ -146,6 +146,6 @@ int main()
 	} while (option == 'y' || option == 'Y');
 #endif
 
-	run_all_tests ();
+	//run_all_tests ();
 	return 0;
 }
