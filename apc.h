@@ -83,6 +83,7 @@ int dl_delete_list(Dlist **head, Dlist **tail);
 
 int division (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 int compare_LL_lt (Dlist* head1, Dlist* head2);
-int remove_zeros (Dlist** head);
+int strip_leading_zeroes (Dlist** head);
+void pretty_print_list(char* message, Dlist* head);
 
 #endif

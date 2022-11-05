@@ -7,93 +7,110 @@ int division (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist 
 	Dlist* dividend_t = *tail1;
 	Dlist* divisor_h = *head2;
 	Dlist* divisor_t = *tail2;
-	Dlist* temp_h = NULL;
-	Dlist* temp_t = NULL;
+	Dlist* temp_dividend_h = NULL;
+	Dlist* temp_dividend_t = NULL;
 	Dlist* quotient_h = NULL;
 	Dlist* quotient_t = NULL;
-	Dlist* tempR_h = NULL;
-	Dlist* tempR_t = NULL;
+	Dlist* temp_product_h = NULL;
+	Dlist* temp_product_t = NULL;
 	int ret, flag;
 	
-	//print_list (quotient_h);
+	//pretty_print_list ("",quotient_h);
 	while (1)
 	{
-		ret = dl_insert_last (&quotient_h, &quotient_t, 0);
 		flag = 0;
-
-		while ((ret = compare_LL_lt (temp_h, divisor_h)) != GT)	//Appending to Temporary Dividend.
+		while (compare_LL_lt (temp_dividend_h, divisor_h) != GT)	//Appending to Temporary Dividend.
 		{
-			printf ("Return: %d\n", ret);
+			// if (dividend_h -> data == 0 && temp_dividend_h -> data == 0) {
+			// 	dl_insert_last(headR, tailR, 0);
+			// 	dividend_h = dividend_h -> next;
+			// 	continue;
+			// }
 			if (dividend_h == NULL)
 			{
+				printf("finished original dividend\n");
 				flag = 1;
 				break;
 			}
-			ret = dl_insert_last (&temp_h, &temp_t, dividend_h->data);
-			//print_list (temp_h);
+			ret = dl_insert_last (&temp_dividend_h, &temp_dividend_t, dividend_h->data);
 			dividend_h = dividend_h->next;
 		}
-		printf ("Temporary Dividend:\n");
-		print_list (temp_h);
-		print_list (divisor_h);
+		strip_leading_zeroes(&temp_dividend_h);
+		pretty_print_list ("temp dividend", temp_dividend_h);
+		pretty_print_list ("divisor",divisor_h);
 
-		if (flag == 1)
-			break;
+		
 		printf ("------------------------------\n");
 		
-		while (compare_LL_lt (temp_h, tempR_h) != LT)
+		int multiplier = 0;
+		while(1)
 		{
-			dl_delete_list (&tempR_h, &tempR_t);
-			quotient_h->data += 1;
-			ret = multiplication (&quotient_h, &quotient_t, &divisor_h, &divisor_t, &tempR_h, &tempR_t);
+			dl_delete_list (&temp_product_h, &temp_product_t);
+			dl_delete_list (&quotient_h, &quotient_t);
+			dl_insert_last (&quotient_h, &quotient_t, multiplier);
+			ret = multiplication (&quotient_h, &quotient_t, &divisor_h, &divisor_t, &temp_product_h, &temp_product_t);
+			strip_leading_zeroes (&temp_product_h);
 			if (ret == FAILURE)
 				printf ("Multiplication Operation failed.\n");
-			ret = remove_zeros (&tempR_h);
-			printf ("Quotient: %d\n", quotient_h->data);
+			if (compare_LL_lt(temp_product_h, temp_dividend_h) == GT)
+				break;
+			multiplier++;
 		}
+		// strip_leading_zeroes (&temp_product_h);
+		printf("after finding apt multiple of divisor\n");
+		pretty_print_list ("temp_dividend",temp_dividend_h);
+		pretty_print_list ("temp_prod closest multiple gt",temp_product_h);
+		pretty_print_list ("multiplier",quotient_h);
+		if (flag == 1)
+			break;
 
-		//print_list (temp_h);
-		//print_list (tempR_h);
-		printf ("***********------\n");
-		ret = dl_insert_last (headR, tailR, (quotient_h->data - 1));
+		printf ("*************************************\n");
+		
+		ret = dl_insert_last (headR, tailR, multiplier-1);
 		dl_delete_list (&quotient_h, &quotient_t);
 		
-		Dlist* subR_h = NULL;
-		Dlist* subR_t = NULL;
-		ret = addition (&temp_h, &temp_t, &divisor_h, &divisor_t, &subR_h, &subR_t);	//Instead of recalculating new product with (quotient->data - 1), we added Divisor to the Dividend.
+		Dlist* temp_sum_h = NULL;
+		Dlist* temp_sum_t = NULL;
+		ret = addition (&temp_dividend_h, &temp_dividend_t, &divisor_h, &divisor_t, &temp_sum_h, &temp_sum_t);	//Instead of recalculating new product with (quotient->data - 1), we added Divisor to the Dividend.
 		if (ret == FAILURE)
 			printf ("Addition Operation failed.\n");
+		dl_delete_list (&temp_dividend_h, &temp_dividend_t);
 		
-		print_list (tempR_h);
-		print_list (subR_h);
-		dl_delete_list (&temp_h, &temp_t);
-		ret = subtraction (&subR_h, &subR_t, &tempR_h, &tempR_t, &temp_h, &temp_t);	//Calculating Remainder and storing in 'temp_h'.
+		pretty_print_list ("temp_sum before subtraction",temp_sum_h);
+		pretty_print_list ("temp_prod <= above",temp_product_h);
+		ret = subtraction (&temp_sum_h, &temp_sum_t, &temp_product_h, &temp_product_t, &temp_dividend_h, &temp_dividend_t);	//Calculating Remainder and storing in 'temp_dividend_h'.
 		if (ret == FAILURE)
 			printf ("Subtraction Operation failed.\n");
-		print_list (temp_h);
-		dl_delete_list (&subR_h, &subR_t);
+
+		pretty_print_list("remainder before next iteration",temp_dividend_h);
+		strip_leading_zeroes(&temp_dividend_h);
+		dl_delete_list (&temp_sum_h, &temp_sum_t);
+		dl_delete_list (&temp_product_h, &temp_product_t);	
 	}
 
 	printf ("After Division:\n");
-	printf ("Quotient: ");
-	print_list (*headR);
+	printf ("Resulting quotient: ");
+	pretty_print_list ("",*headR);
 	printf ("Divisor: ");
-	print_list (divisor_h);
+	pretty_print_list ("",divisor_h);
 	printf ("Remainder: ");
-	print_list (temp_h);
+	pretty_print_list ("",temp_dividend_h);
 	return SUCCESS;
 }
 
-int remove_zeros (Dlist** head)
+int strip_leading_zeroes (Dlist** head)
 {
 	if (*head == NULL)
 		return FAILURE;
 
-	if ((*head)->data == 0)
+	while (count_nodes(*head) > 1 && (*head)->data == 0)
 	{
+		printf("#nodes = %d\n", count_nodes(*head));
 		*head = (*head)->next;
 		free ((*head)->prev);
 		(*head)->prev = NULL;
-		return SUCCESS;
 	}
+	free ((*head)->prev);
+	(*head)->prev = NULL;
+	return SUCCESS;
 }
