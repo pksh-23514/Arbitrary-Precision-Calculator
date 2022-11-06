@@ -1,6 +1,6 @@
 #include "apc.h"
 
-int division (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
+int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR, Dlist **rem_h, Dlist **rem_t)
 {
 	// printf ("------------------------------\n");
 	Dlist* dividend_h = *head1;
@@ -89,7 +89,20 @@ int division (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist 
 	// pretty_print_list ("",divisor_h);
 	printf ("Remainder: ");
 	pretty_print_list ("",temp_dividend_h);
+	*rem_h = temp_dividend_h;
+	*rem_t = temp_dividend_t;
 	return SUCCESS;
+}
+
+int division (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR)
+{
+	Dlist* rem_h = NULL;
+	Dlist* rem_t = NULL;
+
+	int ret = division_internal (head1, tail1, head2, tail2, headR, tailR, &rem_h, &rem_t);
+	
+	dl_delete_list (&rem_h, &rem_t);
+	return ret;
 }
 
 int strip_leading_zeroes (Dlist** head)

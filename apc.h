@@ -85,6 +85,8 @@ int division (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 int compare_LL_lt (Dlist* head1, Dlist* head2);
 int strip_leading_zeroes (Dlist** head);
 void pretty_print_list(char* message, Dlist* head);
+int division_internal (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
+int modulus (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR);
 int exponent (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 
 #endif

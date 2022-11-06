@@ -111,6 +111,7 @@ int main()
 					case MOD:
 						{
 							printf ("Remainder.\n");
+							ret = modulus (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 							//
 						}
 						break;
