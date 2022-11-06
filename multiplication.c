@@ -115,18 +115,6 @@ int multiplication (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, 
 	}
 }
 
-int count_nodes (Dlist* head)	//The function shall return the Number of Nodes in the DLL.
-{
-	int len = 0;
-	while (head != NULL)
-	{
-		len += 1;
-		head = head->next;
-	}
-
-	return len;
-}
-
 int create_result (Dlist** headR, Dlist** tailR, int len)	//The function shall create a DLL with 'len' number of Nodes and '0' as Data.
 {
 	int ret;

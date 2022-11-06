@@ -25,7 +25,7 @@ int exponent (Dlist** head1, Dlist** tail1, Dlist** head2, Dlist** tail2, Dlist*
 		{
 			//Odd Exponent scenario.
 			ret = multiplication (head1, tail1, headR, tailR, &temp_h, &temp_t);
-			strip_leading_zeroes (&temp_h);
+			// strip_leading_zeroes (&temp_h);
 			dl_delete_list (headR, tailR);
 			*headR = temp_h;
 			*tailR = temp_t;
@@ -35,14 +35,14 @@ int exponent (Dlist** head1, Dlist** tail1, Dlist** head2, Dlist** tail2, Dlist*
 			pretty_print_list ("Result if Odd: ", *headR);
 		}
 
-		strip_leading_zeroes (head1);
+		// strip_leading_zeroes (head1);
 		ret = copy_LL (*head1, *tail1, &base_h, &base_t);	//Duplicating the Base.
 		pretty_print_list ("Duplicate Base: ", base_h);
 
 		ret = multiplication (head1, tail1, &base_h, &base_t, &temp_h, &temp_t);
 		dl_delete_list (head1, tail1);
 		dl_delete_list (&base_h, &base_t);
-		strip_leading_zeroes (&temp_h);
+		// strip_leading_zeroes (&temp_h);
 		*head1 = temp_h;
 		*tail1 = temp_t;
 		temp_h = NULL;

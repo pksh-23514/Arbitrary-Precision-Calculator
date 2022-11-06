@@ -124,7 +124,7 @@ int main()
 					case FDIV:
 						{
 							printf ("Fractional Division.\n");
-							//
+							ret = f_division (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 						}
 						break;
 					default: printf ("Invalid Input: Try again...\n");

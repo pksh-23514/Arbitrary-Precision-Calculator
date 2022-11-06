@@ -4,6 +4,12 @@ void print_list (Dlist* head)
 {
 	while (head != NULL)
 	{
+		if (head->data == -1)	//If the Node Data is '-1', it signifies the start of Decimals.
+		{
+			printf(" -1 ");
+			head = head->next;
+			continue;
+		}
 		if (head->data < 10)
 			printf("000");
 		else if (head->data > 9 && head->data < 100)
