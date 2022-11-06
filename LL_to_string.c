@@ -13,6 +13,10 @@ int LL_to_str (Dlist* head, Dlist* tail, char sign, char* data)
 	{
 		while (head != NULL)
 		{
+			if (head->data == -1)	//If the Node Data is '-1', it signifies the start of Decimals.
+			{
+				data [pos++] = '.';
+			}
 			if (head->data != 0)
 			{
 				if (pos == 1)

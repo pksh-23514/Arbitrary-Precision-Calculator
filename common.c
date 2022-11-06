@@ -223,7 +223,7 @@ int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, ch
 			*signR = '-';
 		}
 	}
-	else if ((*operator == MUL) || (*operator == DIV))		//Result sign for Multiplication and Division Operation.
+	else if ((*operator == MUL) || (*operator == DIV) || (*operator == FDIV))		//Result sign for Multiplication and Division Operation.
 	{
 		if (((sign1 == '+') && (sign2 == '+')) || ((sign1 == '-') && (sign2 == '-')))
 		{
@@ -233,6 +233,21 @@ int result_sign (char* var1, char* var2, char sign1, char sign2, char* signR, ch
 		{
 			*signR = '-';
 		}
+	}
+	else if (*operator == MOD)	//Result sign for Remainder Operation.
+	{
+		if (sign1 ==  '+')
+		{
+			*signR = '+';
+		}
+		else
+		{
+			*signR = '-';
+		}
+	}
+	else	//Result sign for Exponential Operation.
+	{
+		*signR = '+';
 	}
 
 	return SUCCESS;

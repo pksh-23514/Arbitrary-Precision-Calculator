@@ -136,6 +136,7 @@ int main()
 				ret = LL_to_str (headR, tailR, signR, res);
 				printf ("Result: %s\n", res);
 				printf ("Size: %d\n", ret);
+				dl_delete_list (&headR, &tailR);
 			}
 			else
 			{
