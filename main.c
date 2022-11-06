@@ -118,7 +118,7 @@ int main()
 					case EXP:
 						{
 							printf ("Exponent.\n");
-							//
+							ret = exponent (&head1, &tail1, &head2, &tail2, &headR, &tailR);
 						}
 						break;
 					case FDIV:

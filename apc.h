@@ -88,5 +88,6 @@ void pretty_print_list(char* message, Dlist* head);
 int division_internal (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 int modulus (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR);
 int exponent (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
+int copy_LL (Dlist* head1, Dlist* tail1, Dlist** head2, Dlist** tail2);
 
 #endif

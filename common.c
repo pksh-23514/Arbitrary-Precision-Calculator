@@ -259,3 +259,19 @@ int compare (char* var1, char* var2)	//To compare the 2 given numbers. The great
 			return -1;
 	}
 }
+
+int copy_LL (Dlist* head1, Dlist* tail1, Dlist** head2, Dlist** tail2)
+{
+	int ret;
+	while (head1 != NULL)
+	{
+		ret = dl_insert_last (head2, tail2, head1->data);
+		if (ret == FAILURE)
+		{
+			printf ("Node not copied.\n");
+			return ret;
+		}
+		head1 = head1->next;
+	}
+	return SUCCESS;
+}
