@@ -292,8 +292,13 @@ int copy_LL (Dlist* head1, Dlist* tail1, Dlist** head2, Dlist** tail2)
 }
 
 int is_zero(Dlist* head) {
-	while(head != NULL) {
-		if (head -> data != 0) {
+	if(head == NULL) 
+		return 0;
+	
+	while(head != NULL) 
+	{
+		if (head -> data != 0) 
+		{
 			return 0;
 		}
 		head = head -> next;
@@ -306,11 +311,16 @@ int remove_leading_zero(Dlist** head) {
 		return 0;
 	}
 	if ((*head)->data == 0) {
-		(*head) = (*head) -> next;
-		if((*head) -> prev != NULL) {
-			free((*head)->prev);
+		if ((*head)->next == NULL) 
+		{
+			*head = NULL;
 		}
-		(*head)->prev = NULL;
+		else
+		{
+			(*head) = (*head) -> next;
+			free((*head)->prev);
+			(*head)->prev = NULL;
+		}
 		return 1;
 	}
 	return 0;
@@ -324,6 +334,5 @@ int count_nodes (Dlist* head)	//The function shall return the Number of Nodes in
 		len += 1;
 		head = head->next;
 	}
-
 	return len;
 }

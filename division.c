@@ -36,7 +36,7 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 	{
 		++iter;
 		printf ("------------------------------\n");
-		if (dividend_h == NULL) {
+		if (dividend_h == NULL && temp_dividend_h == NULL) {
 			printf("division complete\n");
 			break;
 		}
@@ -56,10 +56,15 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 			dividend_h = dividend_h->next;
 			// pretty_print_list("after making temp dividend", temp_dividend_h);
 		}
-		while(is_zero(temp_dividend_h) && count_nodes(temp_dividend_h) > 1) {
-			remove_leading_zero(&temp_dividend_h);
+
+		pretty_print_list("before removing zeros", temp_dividend_h);
+		while(remove_leading_zero(&temp_dividend_h)) {
+			dl_insert_last (headR, tailR, 0);
 		}	
 		pretty_print_list("after removing zeros", temp_dividend_h);
+		if (temp_dividend_h == NULL) {
+			continue;	
+		}
 		
 		int multiplier = 0;
 		int compare_tp_td = -1;
@@ -97,13 +102,10 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 			}
 		}
 
-		// printf("after finding apt multiple of divisor\n");
 		pretty_print_list ("temp_dividend",temp_dividend_h);
 		pretty_print_list ("temp_prod closest multiple gte",temp_product_h);
 		pretty_print_list ("multiplier",multiplier_h);
 
-
-		// printf ("*************************************\n");
 		if (compare_tp_td == EQ) 
 		{
 			// temp dividend is exact multiple, add multiplier to quotient
