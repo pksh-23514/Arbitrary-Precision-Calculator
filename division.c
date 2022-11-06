@@ -2,6 +2,12 @@
 
 int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR, Dlist **tailR, Dlist **rem_h, Dlist **rem_t)
 {
+
+	strip_leading_zeroes(head2);
+	if (count_nodes(*head2) == 1 && (*head2)->data == 0) {
+		return FAILURE; // divide by zero error
+	}
+	
 	// printf ("------------------------------\n");
 	Dlist* dividend_h = *head1;
 	Dlist* dividend_t = *tail1;
@@ -14,7 +20,11 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 	Dlist* temp_product_h = NULL;
 	Dlist* temp_product_t = NULL;
 	int ret, flag;
-	
+	if (compare_LL_lt(*head1, *head2) == EQ) {
+		int ret = dl_insert_last (headR, tailR, 1);
+		return ret;
+	}
+
 	while (1)
 	{
 		flag = 0;
