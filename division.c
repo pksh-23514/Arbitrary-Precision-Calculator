@@ -87,8 +87,8 @@ int division (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist 
 	// pretty_print_list ("",*headR);
 	// printf ("Divisor: ");
 	// pretty_print_list ("",divisor_h);
-	// printf ("Remainder: ");
-	// pretty_print_list ("",temp_dividend_h);
+	printf ("Remainder: ");
+	pretty_print_list ("",temp_dividend_h);
 	return SUCCESS;
 }
 

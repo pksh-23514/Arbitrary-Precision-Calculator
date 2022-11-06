@@ -108,6 +108,24 @@ int main()
 							//
 						}
 						break;
+					case MOD:
+						{
+							printf ("Remainder.\n");
+							//
+						}
+						break;
+					case EXP:
+						{
+							printf ("Exponent.\n");
+							//
+						}
+						break;
+					case FDIV:
+						{
+							printf ("Fractional Division.\n");
+							//
+						}
+						break;
 					default: printf ("Invalid Input: Try again...\n");
 				}
 

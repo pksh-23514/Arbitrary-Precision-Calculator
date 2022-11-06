@@ -25,7 +25,7 @@ struct Node
 typedef struct Node Dlist;
 typedef enum
 {
-	ADD, SUB, MUL, DIV, MOD, UNSUPPORTED
+	ADD, SUB, MUL, DIV, MOD, EXP, FDIV, UNSUPPORTED
 } Operation;
 typedef struct
 {
@@ -85,5 +85,6 @@ int division (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 int compare_LL_lt (Dlist* head1, Dlist* head2);
 int strip_leading_zeroes (Dlist** head);
 void pretty_print_list(char* message, Dlist* head);
+int exponent (Dlist**, Dlist**, Dlist**, Dlist**, Dlist**, Dlist**);
 
 #endif

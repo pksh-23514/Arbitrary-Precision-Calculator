@@ -159,6 +159,10 @@ Operation is_operator (char ch)
 				  break;
 		case '%': opt = MOD;
 				  break;
+		case '^': opt = EXP;
+				  break;
+		case '#': opt = FDIV;
+				  break;
 		default: opt = UNSUPPORTED;
 	}
 
