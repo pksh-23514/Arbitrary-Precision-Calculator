@@ -307,12 +307,13 @@ int is_zero(Dlist* head) {
 }
 
 int remove_leading_zero(Dlist** head) {
-	if (head ==  NULL || (*head) == NULL) {
+	if ((*head) == NULL) {
 		return 0;
 	}
 	if ((*head)->data == 0) {
 		if ((*head)->next == NULL) 
 		{
+			free(*head);
 			*head = NULL;
 		}
 		else
