@@ -4,7 +4,7 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 {
 
 	if (is_zero(*head2)) {
-		printf("divide by zero not allowed");
+		printf("divide by zero not allowed\n");
 		return FAILURE;
 	}
 
@@ -32,9 +32,9 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 
 	while (1)
 	{
-		printf ("------------------------------\n");
+		// printf ("------------------------------\n");
 		if (dividend_h == NULL) {
-			printf("division complete\n");
+			// printf("division complete\n");
 			break;
 		}
 
@@ -49,23 +49,22 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 			// pretty_print_list("dividend", dividend_h);
 			// pretty_print_list("temp dividend", temp_dividend_h);
 			compare_td_d = compare_LL_lt (temp_dividend_h, divisor_h); 
-			printf("compare_td_d %d\n", compare_td_d);
+			// printf("compare_td_d %d\n", compare_td_d);
 			if (compare_td_d == GT || compare_td_d == EQ || dividend_h == NULL) 
 				break;
+			else {
+				if (remove_leading_zero(&temp_dividend_h)) {
+					dl_insert_last (headR, tailR, 0);
+				}
+			}
 		}	
 
-		// pretty_print_list("before removing zeros", temp_dividend_h);
-		while(remove_leading_zero(&temp_dividend_h)) {
-			dl_insert_last (headR, tailR, 0);
-		}
-		pretty_print_list("after removing zeros", temp_dividend_h);
+		// pretty_print_list("after removing zeros", temp_dividend_h);
+
 		if (temp_dividend_h == NULL) {
 			continue;
 		}
 	
-
-		
-		
 		int compare_tp_td = -1;
 		// find closest mutiple of divisor, lte to temp_dividend
 		for(int multiplier = 0; multiplier < 10000; multiplier++)
@@ -89,15 +88,14 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 			
 		}
 
-		pretty_print_list ("temp_dividend",temp_dividend_h);
-		pretty_print_list ("temp_prod closest multiple gte",temp_product_h);
-		pretty_print_list ("multiplier",multiplier_h);
+		// pretty_print_list ("temp_dividend",temp_dividend_h);
+		// pretty_print_list ("temp_prod closest multiple gte",temp_product_h);
+		// pretty_print_list ("multiplier",multiplier_h);
 
 		if (compare_tp_td == EQ) 
 		{
 			// temp dividend is exact multiple, add multiplier to quotient
 			dl_insert_last (headR, tailR, multiplier_h->data);
-			// pretty_print_list("equal", *headR);
 		}
 		else if (compare_tp_td == GT)
 		{
@@ -114,14 +112,14 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 			tempSum_h = NULL;
 			tempSum_t = NULL;
 
-			pretty_print_list("temp dividend, before subtration", temp_dividend_h);
-			pretty_print_list("temp product, before subtration", temp_product_h);
+			// pretty_print_list("temp dividend, before subtration", temp_dividend_h);
+			// pretty_print_list("temp product, before subtration", temp_product_h);
 		}
 		else 
 		{
 			printf ("impossible\n");
-			pretty_print_list("TEMP div", temp_dividend_h);
-			pretty_print_list("prod <= ", temp_product_h);
+			// pretty_print_list("TEMP div", temp_dividend_h);
+			// pretty_print_list("prod <= ", temp_product_h);
 			exit(0);
 		}
 
@@ -129,7 +127,7 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 		ret = subtraction (&temp_dividend_h, &temp_dividend_t, &temp_product_h, &temp_product_t, &tempDiff_h, &tempDiff_t);
 		if (ret == FAILURE)
 			printf ("subtraction failed in division.\n");
-		pretty_print_list("remainder after subtraction bz", tempDiff_h);
+		// pretty_print_list("remainder after subtraction bz", tempDiff_h);
 		
 		while(remove_leading_zero(&tempDiff_h));
 
@@ -142,15 +140,19 @@ int division_internal (Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail
 		tempDiff_t = NULL;
 	}
 
+	// assigning remainder
+	*rem_h = temp_dividend_h;
+	*rem_t = temp_dividend_t;
+	temp_dividend_h  = NULL;
+	temp_dividend_t = NULL;
+	
 	// printf ("After Division:\n");
-	printf ("Resulting quotient: ");
-	pretty_print_list ("",*headR);
+	// printf ("Resulting quotient: ");
+	// pretty_print_list ("",*headR);
 	// printf ("Divisor: ");
 	// pretty_print_list ("",divisor_h);
 	// printf ("Remainder: ");
-	// pretty_print_list ("",temp_dividend_h);
-	
-
+	// pretty_print_list ("",*rem_h);
 	return SUCCESS;
 }
 
